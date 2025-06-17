@@ -1,0 +1,11 @@
+feature,posicao,peso
+minimo,1,1.0
+mean_abs,2,0.95
+kurtosis,3,0.9
+media,4,0.85
+rms,5,0.8
+desvio_padrao,6,0.75
+pico_a_pico,7,0.7
+skewness,8,0.65
+energia,9,0.6
+variancia,10,0.55

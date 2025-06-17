@@ -1,0 +1,2 @@
+minimo,minimo_peso,mean_abs,mean_abs_peso,kurtosis,kurtosis_peso,media,media_peso,rms,rms_peso,desvio_padrao,desvio_padrao_peso,pico_a_pico,pico_a_pico_peso,skewness,skewness_peso,energia,energia_peso,variancia,variancia_peso,segmento,arquivo_original,condicao,label
+-0.16292861538461537,1.0,0.048014882723833543,0.95,-0.16631320356104373,0.9,0.014725339218158889,0.85,0.05965396508614641,0.8,0.05780795737101707,0.75,0.30186646153846153,0.7,-0.206003943784546,0.65,0.8682973143217987,0.6,0.003341759935409327,0.55,segmento_166,segmento_166.csv,97_Normal_0,0
