@@ -1,0 +1,35 @@
+Arquivo crack fault state-Vw=4.5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\crack fault state-Vw=4.5_augmented
+Arquivo crack fault-Vw=4_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\crack fault-Vw=4_augmented
+Arquivo Crack Fault-Vw=5.4_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Crack Fault-Vw=5.4_augmented
+Arquivo Crack Fault-Vw=5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Crack Fault-Vw=5_augmented
+Arquivo Crack State-Vw=1.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Crack State-Vw=1.3_augmented
+Arquivo Crack state-Vw=2.8_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Crack state-Vw=2.8_augmented
+Arquivo Crack state-Vw=3.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Crack state-Vw=3.3_augmented
+Arquivo Erosion fault state-Vw=1.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion fault state-Vw=1.3_augmented
+Arquivo Erosion fault state-Vw=2.1_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion fault state-Vw=2.1_augmented
+Arquivo Erosion fault state-Vw=2.8_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion fault state-Vw=2.8_augmented
+Arquivo Erosion Fault state-Vw=3.4_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion Fault state-Vw=3.4_augmented
+Arquivo Erosion Fault State-Vw=4.2_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion Fault State-Vw=4.2_augmented
+Arquivo Erosion fault state-Vw=5.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion fault state-Vw=5.3_augmented
+Arquivo Erosion Fault state-Vw=5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\Erosion Fault state-Vw=5_augmented
+Arquivo H for Vw=2.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H for Vw=2.3_augmented
+Arquivo H-for Vw=1.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H-for Vw=1.3_augmented
+Arquivo H-for-Vw=3.2_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H-for-Vw=3.2_augmented
+Arquivo H-for-Vw=3.7_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H-for-Vw=3.7_augmented
+Arquivo H-for-Vw=4.5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H-for-Vw=4.5_augmented
+Arquivo H-for-Vw=5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H-for-Vw=5_augmented
+Arquivo H-Vw=5.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\H-Vw=5.3_augmented
+Arquivo twist fault when Vw=1.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twist fault when Vw=1.3_augmented
+Arquivo twist fault when Vw=4.7_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twist fault when Vw=4.7_augmented
+Arquivo twist fault when Vw=5.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twist fault when Vw=5.3_augmented
+Arquivo twist fault when Vw=5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twist fault when Vw=5_augmented
+Arquivo twist fault when Vwind=4_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twist fault when Vwind=4_augmented
+Arquivo twist faultwhenVw=3.2_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twist faultwhenVw=3.2_augmented
+Arquivo twsist faut when Vw=2_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\twsist faut when Vw=2_augmented
+Arquivo unbalance fault state-Vw=3.4_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\unbalance fault state-Vw=3.4_augmented
+Arquivo unbalance fault state-Vw=4.2_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\unbalance fault state-Vw=4.2_augmented
+Arquivo unbalance fault state-Vw=4.7_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\unbalance fault state-Vw=4.7_augmented
+Arquivo unbalance fault state-Vw=5_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\unbalance fault state-Vw=5_augmented
+Arquivo unbalance fault state=Vw=2.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\unbalance fault state=Vw=2.3_augmented
+Arquivo UnbalanceState-Vw=1.3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\UnbalanceState-Vw=1.3_augmented
+Arquivo unbalnce fault state-Vw=3_augmented.csv: 33 segmentos salvos em C:\Users\joeld\OneDrive\Documentos\cursorProject\sistema_segmentacao\resultados_segmentos\unbalnce fault state-Vw=3_augmented

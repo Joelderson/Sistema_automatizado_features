@@ -5,34 +5,12 @@ import os
 import re
 import shutil
 import sys
+import pandas as pd
 
 # Variável global para armazenar o caminho do arquivo
 definir_caminho = {'arquivo': None, 'pasta': None, 'tipo': None}
 
-# Função para selecionar arquivo ou pasta
-def selecionar_arquivo_ou_pasta():
-    escolha = messagebox.askquestion("Seleção", "Deseja selecionar uma PASTA inteira? (Sim para pasta, Não para arquivo)")
-    if escolha == 'yes':
-        pasta = filedialog.askdirectory(title="Selecione a pasta com arquivos de dados")
-        if pasta:
-            definir_caminho['pasta'] = pasta
-            definir_caminho['arquivo'] = None
-            definir_caminho['tipo'] = 'pasta'
-        else:
-            definir_caminho['pasta'] = None
-            definir_caminho['tipo'] = None
-    else:
-        arquivo = filedialog.askopenfilename(title="Selecione um arquivo para processar")
-        if arquivo:
-            definir_caminho['arquivo'] = arquivo
-            definir_caminho['pasta'] = None
-            definir_caminho['tipo'] = 'arquivo'
-        else:
-            definir_caminho['arquivo'] = None
-            definir_caminho['tipo'] = None
-    atualizar_label_selecionado()
-
-# Função para processar os dados
+ # Função para processar os dados
 def processar_dados():
     tipo = definir_caminho['tipo']
     arquivos_para_processar = []
@@ -47,13 +25,13 @@ def processar_dados():
         if not pasta:
             messagebox.showerror("Erro", "Selecione uma pasta antes de processar.")
             return
-        # Buscar arquivos de dados em todas as subpastas
         for root, dirs, files in os.walk(pasta):
             for file in files:
-                if file.lower().endswith(('.txt', '.csv')):
+                if file.lower().endswith((
+                    '.txt', '.csv', '.xls', '.xlsx')):
                     arquivos_para_processar.append(os.path.join(root, file))
         if not arquivos_para_processar:
-            messagebox.showerror("Erro", "Nenhum arquivo de dados (.txt, .csv) encontrado na pasta.")
+            messagebox.showerror("Erro", "Nenhum arquivo de dados (.txt, .csv, .xls, .xlsx) encontrado na pasta.")
             return
     else:
         messagebox.showerror("Erro", "Selecione um arquivo ou pasta antes de processar.")
@@ -69,38 +47,82 @@ def processar_dados():
     os.makedirs(pasta_base, exist_ok=True)
     for caminho_arquivo in arquivos_para_processar:
         try:
-            with open(caminho_arquivo, 'r', encoding='utf-8') as f:
-                linhas = f.readlines()
+            ext = os.path.splitext(caminho_arquivo)[1].lower()
+            if ext in ['.csv', '.txt']:
+                try:
+                    df = pd.read_csv(caminho_arquivo, encoding='utf-8')
+                except UnicodeDecodeError:
+                    try:
+                        df = pd.read_csv(caminho_arquivo, encoding='latin1')
+                    except Exception as e:
+                        messagebox.showerror("Erro ao ler arquivo", f"{caminho_arquivo}: {e}")
+                        continue
+                linhas = df.to_csv(index=False, header=True).splitlines(keepends=True)
+                total_linhas = len(linhas)
+                if n_segmentos > total_linhas:
+                    messagebox.showerror("Erro", f"O número de segmentos é maior que o número de linhas do arquivo: {os.path.basename(caminho_arquivo)}.")
+                    continue
+                tamanho_segmento = total_linhas // n_segmentos
+                resto = total_linhas % n_segmentos
+                segmentos = []
+                inicio = 0
+                for i in range(n_segmentos):
+                    fim = inicio + tamanho_segmento + (1 if i < resto else 0)
+                    segmentos.append(linhas[inicio:fim])
+                    inicio = fim
+                nome_arquivo = os.path.splitext(os.path.basename(caminho_arquivo))[0]
+                subpasta_nome = nome_arquivo
+                subpastas_existentes = [d for d in os.listdir(pasta_base) if os.path.isdir(os.path.join(pasta_base, d))]
+                if subpasta_nome in subpastas_existentes:
+                    idx = 1
+                    while f"{nome_arquivo}_{idx}" in subpastas_existentes:
+                        idx += 1
+                    subpasta_nome = f"{nome_arquivo}_{idx}"
+                pasta_saida = os.path.join(pasta_base, subpasta_nome)
+                if os.path.exists(pasta_saida):
+                    shutil.rmtree(pasta_saida)
+                os.makedirs(pasta_saida, exist_ok=True)
+                for idx, segmento in enumerate(segmentos):
+                    nome_saida = os.path.join(pasta_saida, f'segmento_{idx+1}.txt')
+                    with open(nome_saida, 'w', encoding='utf-8') as f:
+                        f.writelines(segmento)
+            elif ext in ['.xls', '.xlsx']:
+                try:
+                    df = pd.read_excel(caminho_arquivo)
+                except Exception as e:
+                    messagebox.showerror("Erro ao ler arquivo Excel", f"{caminho_arquivo}: {e}")
+                    continue
+                total_linhas = len(df)
+                if n_segmentos > total_linhas:
+                    messagebox.showerror("Erro", f"O número de segmentos é maior que o número de linhas do arquivo: {os.path.basename(caminho_arquivo)}.")
+                    continue
+                tamanho_segmento = total_linhas // n_segmentos
+                resto = total_linhas % n_segmentos
+                inicio = 0
+                nome_arquivo = os.path.splitext(os.path.basename(caminho_arquivo))[0]
+                subpasta_nome = nome_arquivo
+                subpastas_existentes = [d for d in os.listdir(pasta_base) if os.path.isdir(os.path.join(pasta_base, d))]
+                if subpasta_nome in subpastas_existentes:
+                    idx = 1
+                    while f"{nome_arquivo}_{idx}" in subpastas_existentes:
+                        idx += 1
+                    subpasta_nome = f"{nome_arquivo}_{idx}"
+                pasta_saida = os.path.join(pasta_base, subpasta_nome)
+                if os.path.exists(pasta_saida):
+                    shutil.rmtree(pasta_saida)
+                os.makedirs(pasta_saida, exist_ok=True)
+                for i in range(n_segmentos):
+                    fim = inicio + tamanho_segmento + (1 if i < resto else 0)
+                    segmento_df = df.iloc[inicio:fim]
+                    nome_saida = os.path.join(pasta_saida, f'segmento_{i+1}.txt')
+                    segmento_df.to_csv(nome_saida, index=False)
+                    inicio = fim
+            else:
+                messagebox.showerror("Erro", f"Formato de arquivo não suportado: {ext}")
+                continue
         except Exception as e:
             messagebox.showerror("Erro ao ler arquivo", f"{caminho_arquivo}: {e}")
             continue
-        total_linhas = len(linhas)
-        if n_segmentos > total_linhas:
-            messagebox.showerror("Erro", f"O número de segmentos é maior que o número de linhas do arquivo: {os.path.basename(caminho_arquivo)}.")
-            continue
-        tamanho_segmento = total_linhas // n_segmentos
-        resto = total_linhas % n_segmentos
-        segmentos = []
-        inicio = 0
-        for i in range(n_segmentos):
-            fim = inicio + tamanho_segmento + (1 if i < resto else 0)
-            segmentos.append(linhas[inicio:fim])
-            inicio = fim
-        # Organização dos resultados em subpastas
-        nome_arquivo = os.path.splitext(os.path.basename(caminho_arquivo))[0]
-        subpasta_nome = nome_arquivo
-        subpastas_existentes = [d for d in os.listdir(pasta_base) if os.path.isdir(os.path.join(pasta_base, d))]
-        if subpasta_nome in subpastas_existentes:
-            idx = 1
-            while f"{nome_arquivo}_{idx}" in subpastas_existentes:
-                idx += 1
-            subpasta_nome = f"{nome_arquivo}_{idx}"
-        pasta_saida = os.path.join(pasta_base, subpasta_nome)
-        os.makedirs(pasta_saida, exist_ok=True)
-        for idx, segmento in enumerate(segmentos):
-            nome_saida = os.path.join(pasta_saida, f'segmento_{idx+1}.txt')
-            with open(nome_saida, 'w', encoding='utf-8') as f:
-                f.writelines(segmento)
     messagebox.showinfo("Sucesso", f"Processamento concluído! Resultados em: {pasta_base}")
 
 def baixar_dados():
@@ -430,8 +452,9 @@ def reposicionar_elementos(event=None):
     # Logos
     label_gva.place(x=10, y=5)
     label_naat.place(x=largura-70, y=10)
-    # Botão de seleção
-    botao_arquivo.place(relx=0.5, y=110, anchor="center")
+    # Botões de seleção
+    botao_pasta.place(relx=0.35, y=110, anchor="center")
+    botao_arquivo.place(relx=0.65, y=110, anchor="center")
     # Label do arquivo/pasta selecionado
     label_selecionado.place(relx=0.5, y=135, anchor="center")
     # Pergunta e caixa de entrada
@@ -446,6 +469,38 @@ def reposicionar_elementos(event=None):
     botao_baixar.place(x=x_inicial + 110, y=y_botoes)
     botao_extrair_features.place(x=x_inicial + 220, y=y_botoes)
     botao_resetar.place(x=x_inicial + 330, y=y_botoes)
+
+# Função para selecionar pasta
+def selecionar_pasta():
+    pasta = filedialog.askdirectory(title="Selecione a pasta com arquivos de dados")
+    if pasta:
+        definir_caminho['pasta'] = pasta
+        definir_caminho['arquivo'] = None
+        definir_caminho['tipo'] = 'pasta'
+    else:
+        definir_caminho['pasta'] = None
+        definir_caminho['tipo'] = None
+    atualizar_label_selecionado()
+
+# Função para selecionar arquivo
+def selecionar_arquivo():
+    arquivo = filedialog.askopenfilename(
+        title="Selecione um arquivo para processar",
+        filetypes=[
+            ("Arquivos de dados", "*.csv;*.xls;*.xlsx"),
+            ("CSV", "*.csv"),
+            ("Excel", "*.xls;*.xlsx"),
+            ("Todos os arquivos", "*.*")
+        ]
+    )
+    if arquivo:
+        definir_caminho['arquivo'] = arquivo
+        definir_caminho['pasta'] = None
+        definir_caminho['tipo'] = 'arquivo'
+    else:
+        definir_caminho['arquivo'] = None
+        definir_caminho['tipo'] = None
+    atualizar_label_selecionado()
 
 # Criação da janela principal
 janela = tk.Tk()
@@ -472,9 +527,11 @@ label_naat = ttk.Label(janela, image=naat_photo)
 label_naat.image = naat_photo
 label_naat.place(x=350, y=10)
 
-# Botão para selecionar arquivo ou pasta
-botao_arquivo = ttk.Button(janela, text="Selecionar arquivo ou pasta para processar", command=selecionar_arquivo_ou_pasta)
-botao_arquivo.place(relx=0.5, y=110, anchor="center")
+# Botões de seleção
+botao_pasta = ttk.Button(janela, text="Selecionar Pasta", command=selecionar_pasta)
+botao_pasta.place(relx=0.35, y=110, anchor="center")
+botao_arquivo = ttk.Button(janela, text="Selecionar Arquivo", command=selecionar_arquivo)
+botao_arquivo.place(relx=0.65, y=110, anchor="center")
 
 # Label para mostrar o nome do arquivo ou pasta selecionado
 label_selecionado = ttk.Label(janela, text="Nenhum arquivo ou pasta selecionado.", font=("Arial", 9))
